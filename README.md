@@ -1,5 +1,5 @@
 # ⚛ Reactivity
-### Reactivity is a simple component that makes tracking user activity easy and lets you decide how to act upon a users active state.  It tracks user activity through a series of DOM events.
+### Reactivity is a simple component that makes tracking user activity easy and lets you decide how to act upon a users active state.  It tracks user activity with a variety of DOM events.
 
 
 ## 💾 Installation
