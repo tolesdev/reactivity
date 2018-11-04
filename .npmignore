@@ -1,0 +1,9 @@
+.gitlab-ci.yml
+.releaserc
+coverage
+babel.config.js
+jest.config.js
+src/**.test.js
+__setups__
+config
+.env

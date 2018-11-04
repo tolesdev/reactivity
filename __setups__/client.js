@@ -9,9 +9,7 @@ function copyProps(src, target) {
 }
 global.document = dom.window.document;
 global.window = dom.window;
-global.navigator = {
-    userAgent: 'node.js',
-};
+global.navigator = dom.navigator;
 global.requestAnimationFrame = function (callback) {
     return setTimeout(callback, 0);
 };

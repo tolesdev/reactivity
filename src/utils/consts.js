@@ -1,4 +1,4 @@
-export const activityEvents = [
+export const ACTIVITY_EVENTS = [
     'click',
     'mousedown',
     'mousemove',
@@ -13,3 +13,5 @@ export const activityEvents = [
     'scroll',
     'resize'
 ];
+
+export const INTERVAL = 500 /*ms*/;
