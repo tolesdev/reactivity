@@ -1,0 +1,39 @@
+stages:
+  - test
+  - name: publish
+    if: branch = master
+  - name: release
+    if: branch = master
+
+language: node_js
+
+node_js:
+  - "10"
+
+jobs:
+  include:
+    - stage: test
+      cache: yarn
+      install:
+        - yarn install
+      script:
+        yarn test
+    - stage: publish
+      on:
+        tags: false
+      cache: yarn
+      install:
+        - yarn install
+      script: 
+        - yarn build
+      deploy:
+        provider: npm
+        email: $NPM_EMAIL
+        api_key: $NPM_TOKEN
+    - stage: release
+      on:
+        tags: false
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: npx semantic-release
