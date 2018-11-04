@@ -8,17 +8,16 @@ class Idle extends React.Component {
         super(props);
         this.state = { isIdle: false };
         this.idleService = new IdleService(this.props.gracePeriod);
-        this.onActive = this.onActive.bind(this);
         // TODO: Implement 'passive' activity tracking.
         this.active = !this.props.passive
         this.intervalLength = 500;
     }
-    componentDidMount() {
+    componentDidMount = () => {
         this.idleService.registerActivity();
         ACTIVITY_EVENTS.forEach(event => this.props.element.addEventListener(event, this.onActive));
         this.activityInterval = this.active && this.createActivityInterval();
     }
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         if (this.state.isIdle) {
             clearInterval(this.activityInterval);
             this.idleInterval = this.createIdleInterval();
@@ -28,39 +27,39 @@ class Idle extends React.Component {
             this.activityInterval = this.active && this.createActivityInterval();
         }
     }
-    componentWillUnmount() {
+    componentWillUnmount = () => {
         clearInterval(this.activityInterval);
         clearInterval(this.idleInterval);
         ACTIVITY_EVENTS.forEach(event => this.props.element.removeEventListener(event, this.onActive));
     }
-    onActive() {
+    onActive = () => {
         this.idleService.registerActivity();
         typeof this.props.onActive === 'function' && this.props.onActive();
         if (this.state.isIdle) this.onReturn();
     }
-    onIdle() {
+    onIdle = () => {
         typeof this.props.onIdle === 'function' && this.props.onIdle();
         this.setState({ isIdle: true });
     }
-    onReturn() {
+    onReturn = () => {
         typeof this.props.onReturn === 'function' && this.props.onReturn();
         this.setState({ isIdle: false });
     }
-    createActivityInterval() {
+    createActivityInterval = () => {
         return setInterval(() => {
             if (this.idleService.timeRemaining() <= 0) {
                 this.onIdle();
             }
         }, INTERVAL);
     }
-    createIdleInterval() {
+    createIdleInterval = () => {
         return setInterval(() => {
             if (this.idleService.timeRemaining() > 0) {
                 this.onReturn();
             }
         }, INTERVAL);
     }
-    render() {
+    render = () => {
         return null;
     }
 }
