@@ -7,3 +7,4 @@ src/**.test.js
 __setups__
 config
 .env
+yarn-error.log

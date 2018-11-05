@@ -9,7 +9,7 @@ class Idle extends React.Component {
         this.state = { isIdle: false };
         this.idleService = new IdleService(this.props.gracePeriod);
         // TODO: Implement 'passive' activity tracking.
-        this.active = !this.props.passive
+        this.active = !this.props.passive;
         this.intervalLength = 500;
     }
     componentDidMount = () => {
@@ -37,24 +37,26 @@ class Idle extends React.Component {
         typeof this.props.onActive === 'function' && this.props.onActive();
         if (this.state.isIdle) this.onReturn();
     }
+    // TODO: Test: Make sure only one call is made.
     onIdle = () => {
         typeof this.props.onIdle === 'function' && this.props.onIdle();
         this.setState({ isIdle: true });
     }
+    // TODO: Test: Make sure only one call is made.
     onReturn = () => {
         typeof this.props.onReturn === 'function' && this.props.onReturn();
         this.setState({ isIdle: false });
     }
     createActivityInterval = () => {
         return setInterval(() => {
-            if (this.idleService.timeRemaining() <= 0) {
+            if (!this.state.isIdle && this.idleService.timeRemaining() <= 0) {
                 this.onIdle();
             }
         }, INTERVAL);
     }
     createIdleInterval = () => {
         return setInterval(() => {
-            if (this.idleService.timeRemaining() > 0) {
+            if (this.state.isIdle && this.idleService.timeRemaining() > 0) {
                 this.onReturn();
             }
         }, INTERVAL);
