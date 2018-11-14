@@ -1,4 +1,6 @@
 stages:
+  - latest
+  - next
   - name: publish
     if: branch = master
 
@@ -9,12 +11,24 @@ node_js:
 
 jobs:
   include:
+    - stage: latest
+      on:
+        tags: false
+      cache: npm
+      script: npx semantix latest
+    - stage: next
+      on:
+        tags: false
+      cache: npm
+      script: npx semantix next
     - stage: publish
       on:
         tags: false
-      cache: yarn
+      cache: npm
       script:
-        - yarn build
+        - export NODE_ENV=production
+        - npm run build
+        - npx semantix update
       deploy:
         skip_cleanup: true
         provider: npm
