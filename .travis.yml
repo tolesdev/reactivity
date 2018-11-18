@@ -1,10 +1,12 @@
 stages:
-  - latest
-  - next
+  - name: latest
+    if: tag = false
+  - name: next
+    if: tag = false
   - name: release
-    if: branch = master
+    if: branch = master AND tag = false
   - name: publish
-    if: branch = master
+    if: branch = master AND tag = false
 
 language: node_js
 
@@ -14,23 +16,18 @@ node_js:
 jobs:
   include:
     - stage: latest
-      on:
-        tags: false
       cache: npm
       script: npx semantix latest
+      
     - stage: next
-      on:
-        tags: false
       cache: npm
       script: npx semantix next
+
     - stage: release
-      on:
-        tags: false
       cache: npm
       script: npx semantix release
+
     - stage: publish
-      on:
-        tags: false
       cache: npm
       script:
         - export NODE_ENV=production
