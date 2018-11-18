@@ -1,9 +1,10 @@
-repository: https://github.com/btoles/reactivity.git
 branch: master
 release:
     BREAKING: major
     feat: minor
     perf: minor
+    refactor: minor
+    ci: patch
     init: patch
     chore: patch
     fix: patch

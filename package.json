@@ -47,6 +47,6 @@
         "mock-local-storage": "^1.1.7",
         "prop-types": "^15.6.2",
         "regenerator-runtime": "^0.12.1",
-        "semantix": "^0.4.2"
+        "semantix": "^0.8.3"
     }
 }

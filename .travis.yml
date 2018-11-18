@@ -1,6 +1,8 @@
 stages:
   - latest
   - next
+  - name: release
+    if: branch = master
   - name: publish
     if: branch = master
 
@@ -21,12 +23,18 @@ jobs:
         tags: false
       cache: npm
       script: npx semantix next
+    - stage: release
+      on:
+        tags: false
+      cache: npm
+      script: npx semantix release
     - stage: publish
       on:
         tags: false
       cache: npm
       script:
         - export NODE_ENV=production
+        - export BABEL_ENV=production
         - npm run build
         - npx semantix update
       deploy:
