@@ -25,9 +25,9 @@
         "url": "https://github.com/btoles/reactivity/issues"
     },
     "homepage": "https://github.com/btoles/reactivity#readme",
-    "dependencies": {
-        "react": "^16.6.0",
-        "react-dom": "^16.6.0"
+    "peerDependencies": {
+        "react": "^16.x",
+        "react-dom": "^16.x"
     },
     "devDependencies": {
         "@babel/cli": "^7.1.2",
