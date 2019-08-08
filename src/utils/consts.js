@@ -2,7 +2,6 @@ export const ACTIVITY_EVENTS = [
     'click',
     'mousedown',
     'mousemove',
-    'mouseover',
     'mouseup',
     'keypress',
     'keyup',
