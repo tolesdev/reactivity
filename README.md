@@ -43,7 +43,6 @@ ReactDOM.render(
 * click
 * mousedown
 * mousemove
-* mouseover
 * mouseup
 * keypress
 * keyup
