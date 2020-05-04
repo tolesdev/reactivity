@@ -16,7 +16,7 @@ function useReactivity(gracePeriod: number, props?: IdleTrackerOptions) {
     const [activeCallback, setActiveCallback] = useState(() => () => {});
 
     const idleStatus = useIdleTracker(gracePeriod, props);
-    console.log('idleStatus', idleStatus);
+
     const [previousStatus, setPreviousStatus] = useState<ActivityStatus>(idleStatus);
 
     useEffect(() => {
