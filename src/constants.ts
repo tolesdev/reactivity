@@ -1,4 +1,9 @@
-export const ACTIVITY_EVENTS = [
+export enum ActivityStatus {
+    Active = 'active',
+    Idle = 'idle',
+}
+
+export const ActivityEvents = [
     'click',
     'mousedown',
     'mousemove',
@@ -10,7 +15,7 @@ export const ACTIVITY_EVENTS = [
     'touchmove',
     'touchcancel',
     'scroll',
-    'resize'
+    'resize',
 ];
 
-export const INTERVAL = 500 /*ms*/;
+export const DefaultInterval = 5000; /*ms*/
