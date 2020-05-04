@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { IdleTrackerOptions } from './useIdleTracker';
 import useIdleTracker from './useIdleTracker';
 import { ActivityStatus } from './constants';
-import { isFunction } from 'lodash';
+
+const isFunction = (value: any) => typeof value === 'function';
 
 /**
  * Provides easy to use event handlers for user activity events.
@@ -16,7 +17,7 @@ function useReactivity(gracePeriod: number, props?: IdleTrackerOptions) {
     const [activeCallback, setActiveCallback] = useState(() => () => {});
 
     const idleStatus = useIdleTracker(gracePeriod, props);
-    console.log('idleStatus', idleStatus);
+
     const [previousStatus, setPreviousStatus] = useState<ActivityStatus>(idleStatus);
 
     useEffect(() => {
