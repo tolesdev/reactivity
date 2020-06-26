@@ -2,7 +2,7 @@
     "name": "@toles/reactivity",
     "version": "0.1.4",
     "description": "React component for easily tracking user activity.",
-    "main": "dist/Idle.js",
+    "main": "dist/index.js",
     "scripts": {
         "build": "rollup -c",
         "test": "jest"
@@ -28,8 +28,8 @@
     },
     "homepage": "https://github.com/btoles/reactivity#readme",
     "peerDependencies": {
-        "react": "^16.x",
-        "react-dom": "^16.x"
+        "react": "^16.9.x",
+        "react-dom": "^16.9.x"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
