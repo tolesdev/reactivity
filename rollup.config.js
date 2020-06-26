@@ -14,8 +14,8 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 export default {
     // can be an array (for multiple inputs)
     // core input options
-    input: 'src/useReactivity.tsx', // required
-    external: ['react', 'react-dom', '@babel/runtime/helpers'],
+    input: 'src/index.ts', // required
+    external: ['react', 'react-dom', '@babel/runtime'],
     plugins: [
         clear({
             // required, point out which directories should be clear.
@@ -40,12 +40,12 @@ export default {
     output: [
         {
             format: 'cjs', // required
-            file: `${outputDir}/reactivity.js`,
+            file: `${outputDir}/index.js`,
             name,
         },
         {
             format: 'cjs', // required
-            file: `${outputDir}/reactivity.min.js`,
+            file: `${outputDir}/index.min.js`,
             name,
             sourcemap: true,
             plugins: [terser()],
