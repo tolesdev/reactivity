@@ -23,7 +23,7 @@ export interface IdleTrackerOptions {
  * @param {IdleTrackerOptions} [options]
  * @returns {ActivityStatus}
  */
-function useIdleTracker(
+export function useIdleTracker(
     gracePeriod: number,
     options: IdleTrackerOptions = { fallbackElement: window, interval: DefaultInterval }
 ): ActivityStatus {
@@ -122,5 +122,3 @@ function useIdleTracker(
 
     return status;
 }
-
-export default useIdleTracker;

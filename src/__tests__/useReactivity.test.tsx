@@ -1,4 +1,4 @@
-import useReactivity from '../useReactivity';
+import { useReactivity } from '../useReactivity';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { TestGracePeriod } from './constants';
 import userEvent from '@testing-library/user-event';

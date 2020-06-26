@@ -1,5 +1,5 @@
 import React from 'react';
-import useIdleTracker from '../useIdleTracker';
+import { useIdleTracker } from '../useIdleTracker';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { render, act as actReact } from '@testing-library/react';
 import { ActivityStatus } from '../constants';

@@ -1,5 +1,5 @@
 import React, { Props, PropsWithoutRef, useRef, RefObject } from 'react';
-import useIdleTracker from '../useIdleTracker';
+import { useIdleTracker } from '../useIdleTracker';
 
 export default function IdleRefComponent(props: any) {
     const { gracePeriod } = props;

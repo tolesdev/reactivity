@@ -1,5 +1,5 @@
 import React from 'react';
-import useIdleTracker from '../useIdleTracker';
+import { useIdleTracker } from '../useIdleTracker';
 
 export default function IdleElementComponent(props: any) {
     const { gracePeriod } = props;

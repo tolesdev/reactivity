@@ -2,10 +2,10 @@
     "name": "@toles/reactivity",
     "version": "0.1.4",
     "description": "React component for easily tracking user activity.",
-    "main": "dist/index.js",
+    "main": "index.js",
     "scripts": {
         "build": "rollup -c",
-        "test": "jest"
+        "test": "NODE_ENV=test jest"
     },
     "repository": {
         "type": "git",
@@ -19,6 +19,7 @@
         "inactivity"
     ],
     "files": [
+        "index.js",
         "dist"
     ],
     "author": "Brennan Toles",
@@ -28,14 +29,21 @@
     },
     "homepage": "https://github.com/btoles/reactivity#readme",
     "peerDependencies": {
+        "@babel/runtime": "^7.10.3",
         "react": "^16.9.x",
         "react-dom": "^16.9.x"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
+        "@babel/plugin-transform-runtime": "^7.9.0",
         "@babel/preset-env": "^7.9.5",
         "@babel/preset-react": "^7.9.4",
         "@babel/preset-typescript": "^7.9.0",
+        "@babel/runtime": "^7.9.0",
+        "@rollup/plugin-babel": "^5.0.4",
+        "@rollup/plugin-commonjs": "^13.0.0",
+        "@rollup/plugin-json": "^4.1.0",
+        "@rollup/plugin-node-resolve": "^8.1.0",
         "@testing-library/dom": "^7.2.2",
         "@testing-library/jest-dom": "^5.5.0",
         "@testing-library/react": "^10.0.3",
@@ -57,13 +65,9 @@
         "react-dom": "^16.13.1",
         "react-test-renderer": "^16.13.1",
         "rollup": "^2.7.6",
-        "rollup-plugin-babel": "^4.4.0",
-        "rollup-plugin-babel-minify": "^10.0.0",
         "rollup-plugin-clear": "^2.0.7",
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-node-resolve": "^5.2.0",
-        "rollup-plugin-progress": "^1.1.1",
-        "rollup-plugin-typescript": "^1.0.1",
+        "rollup-plugin-terser": "^6.1.0",
+        "rollup-plugin-typescript2": "^0.27.1",
         "rollup-plugin-visualizer": "^4.0.4",
         "semantix": "^0.8.3",
         "tslib": "^1.11.1",

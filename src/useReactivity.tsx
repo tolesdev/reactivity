@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IdleTrackerOptions } from './useIdleTracker';
-import useIdleTracker from './useIdleTracker';
+import { useIdleTracker } from './useIdleTracker';
 import { ActivityStatus } from './constants';
 
 const isFunction = (value: any) => typeof value === 'function';
@@ -12,7 +12,7 @@ const isFunction = (value: any) => typeof value === 'function';
  * @param {(IdleTrackerOptions)} props Options for session tracking
  * @returns {ReactivityHandlers} [onIdle, onActive]
  */
-function useReactivity(gracePeriod: number, props?: IdleTrackerOptions) {
+export function useReactivity(gracePeriod: number, props?: IdleTrackerOptions) {
     const [idleCallback, setIdleCallback] = useState(() => () => {});
     const [activeCallback, setActiveCallback] = useState(() => () => {});
 
@@ -40,5 +40,3 @@ function useReactivity(gracePeriod: number, props?: IdleTrackerOptions) {
 
     return [setIdleCallback, setActiveCallback];
 }
-
-export default useReactivity;

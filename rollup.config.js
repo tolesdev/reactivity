@@ -1,64 +1,54 @@
-import visualizer from 'rollup-plugin-visualizer';
-import progress from 'rollup-plugin-progress';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
-import minify from 'rollup-plugin-babel-minify';
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
 import clear from 'rollup-plugin-clear';
-import typescript from 'rollup-plugin-typescript';
+import { terser } from 'rollup-plugin-terser';
+import typescript from 'rollup-plugin-typescript2';
+import visualizer from 'rollup-plugin-visualizer';
 
 const outputDir = 'dist';
 const name = 'Reactivity';
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 export default {
     // can be an array (for multiple inputs)
     // core input options
-    input: 'src/index.ts', // required
-    external: ['react', 'react-dom'],
-    globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-    },
+    input: 'src/useReactivity.tsx', // required
+    external: ['react', 'react-dom', '@babel/runtime/helpers'],
     plugins: [
-        progress(),
         clear({
             // required, point out which directories should be clear.
             targets: [outputDir],
         }),
         resolve({
-            extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx'],
+            extensions,
         }),
         commonjs({
-            include: 'node_modules/**',
-            namedExports: {
-                'node_modules/react/index.js': [
-                    'Component',
-                    'PureComponent',
-                    'Fragment',
-                    'Children',
-                    'createElement',
-                    'cloneElement',
-                    'createContext',
-                    'forwardRef',
-                    'isValidElement',
-                    'useState',
-                    'useEffect',
-                    'useRef',
-                ],
-            },
+            include: /node_modules/,
+            extensions,
         }),
+        json(),
         typescript(),
         babel({
+            extensions,
             exclude: 'node_modules/**',
+            babelHelpers: 'runtime',
         }),
-        minify(),
         visualizer(),
     ],
-    output: {
-        // required (can be an array, for multiple outputs)
-        // core output options
-        format: 'cjs', // required
-        file: `${outputDir}/index.js`,
-        name,
-    },
+    output: [
+        {
+            format: 'cjs', // required
+            file: `${outputDir}/reactivity.js`,
+            name,
+        },
+        {
+            format: 'cjs', // required
+            file: `${outputDir}/reactivity.min.js`,
+            name,
+            sourcemap: true,
+            plugins: [terser()],
+        },
+    ],
 };

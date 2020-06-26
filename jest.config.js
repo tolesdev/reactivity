@@ -60,10 +60,10 @@ module.exports = {
     // globals: {},
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    moduleDirectories: ['node_modules'],
+    // moduleDirectories: ['node_modules'],
 
     // An array of file extensions your modules use
-    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    // moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
 
     // A map from regular expressions to module names that allow to stub out resources with a single module
     // moduleNameMapper: {},
@@ -119,7 +119,7 @@ module.exports = {
     // snapshotSerializers: [],
 
     // The test environment that will be used for testing
-    testEnvironment: 'jsdom',
+    // testEnvironment: 'jsdom',
 
     // Options that will be passed to the testEnvironment
     // testEnvironmentOptions: {},
@@ -131,7 +131,7 @@ module.exports = {
     // testMatch: ['src/**/*'],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    // testPathIgnorePatterns: ['node_modules'],
+    testPathIgnorePatterns: ['node_modules', 'dist', '__tests__/constants.ts'],
 
     // The regexp pattern Jest uses to detect test files
     // testRegex: "",
@@ -149,7 +149,7 @@ module.exports = {
     // timers: "real",
 
     // A map from regular expressions to paths to transformers
-    // transform: null,
+    // transform: {},
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     // transformIgnorePatterns: [
