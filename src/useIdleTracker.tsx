@@ -15,6 +15,7 @@ export interface IdleTrackerOptions {
     ref?: Ref<EventTarget>;
 }
 
+export function useIdleTracker(gracePeriod: number, options?: IdleTrackerOptions): ActivityStatus;
 /**
  * Track session interactivity status.
  * See the list of events in the documentation.
@@ -127,4 +128,3 @@ export function useIdleTracker(
 
     return status;
 }
-export function useIdleTracker(gracePeriod: number): ActivityStatus;
