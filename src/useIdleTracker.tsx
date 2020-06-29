@@ -15,6 +15,7 @@ export interface IdleTrackerOptions {
     ref?: Ref<EventTarget>;
 }
 
+export function useIdleTracker(gracePeriod: number): ActivityStatus;
 /**
  * Track session interactivity status.
  * See the list of events in the documentation.
@@ -25,9 +26,15 @@ export interface IdleTrackerOptions {
  */
 export function useIdleTracker(
     gracePeriod: number,
-    options: IdleTrackerOptions = { fallbackElement: window, interval: DefaultInterval }
+    options: IdleTrackerOptions = {}
 ): ActivityStatus {
-    const { syncSessions = false, element, ref, interval, fallbackElement } = options;
+    const {
+        syncSessions = false,
+        element,
+        ref,
+        interval: DefaultInterval,
+        fallbackElement: window,
+    } = options;
 
     const [status, setStatus] = useState<ActivityStatus>(ActivityStatus.Active);
     let { current: lastActive }: MutableRefObject<number> = useRef(Date.now());

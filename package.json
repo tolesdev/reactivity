@@ -3,6 +3,7 @@
     "version": "0.1.4",
     "description": "React component for easily tracking user activity.",
     "main": "index.js",
+    "typings": "dist/index.d.ts",
     "scripts": {
         "build": "rollup -c",
         "test": "NODE_ENV=test jest"
