@@ -71,7 +71,6 @@ export function useIdleTracker(
     };
 
     const handleActivity = () => {
-        console.log('activity');
         // Short circuit logic will skip updating if the value is unchanged
         setStatus(ActivityStatus.Active);
         // Register the time of the last session activity

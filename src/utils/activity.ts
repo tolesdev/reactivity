@@ -24,7 +24,6 @@ export function getNextInterval(lastActive: number, gracePeriod: number, interva
  */
 export function getSessionStatus(lastActive: number | string, gracePeriod: number) {
     const idleTimeElapsed = subtract(Date.now(), lastActive);
-    console.log('idleTimeElapsed', idleTimeElapsed);
     if (idleTimeElapsed <= gracePeriod) {
         return ActivityStatus.Active;
     }

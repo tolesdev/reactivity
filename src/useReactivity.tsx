@@ -20,22 +20,15 @@ export function useReactivity(gracePeriod: number, props?: IdleTrackerOptions) {
 
     const idleStatus = useIdleTracker(gracePeriod, props);
 
-    const [previousStatus, setPreviousStatus] = useState<ActivityStatus>(idleStatus);
-
     useEffect(() => {
-        if (previousStatus !== idleStatus) {
-            // Idle status has changed, update our previous status
-            setPreviousStatus(idleStatus);
-
-            if (idleStatus === ActivityStatus.Active) {
-                if (isFunction(activeCallback)) {
-                    activeCallback();
-                }
+        if (idleStatus === ActivityStatus.Active) {
+            if (isFunction(activeCallback)) {
+                activeCallback();
             }
-            if (idleStatus === ActivityStatus.Idle) {
-                if (isFunction(idleCallback)) {
-                    idleCallback();
-                }
+        }
+        if (idleStatus === ActivityStatus.Idle) {
+            if (isFunction(idleCallback)) {
+                idleCallback();
             }
         }
     }, [idleStatus]);
