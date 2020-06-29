@@ -32,8 +32,8 @@ export function useIdleTracker(
         syncSessions = false,
         element,
         ref,
-        interval: DefaultInterval,
-        fallbackElement: window,
+        interval = DefaultInterval,
+        fallbackElement = window,
     } = options;
 
     const [status, setStatus] = useState<ActivityStatus>(ActivityStatus.Active);
