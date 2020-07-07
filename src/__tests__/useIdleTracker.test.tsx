@@ -159,4 +159,44 @@ describe('useIdleTracker', () => {
         }
         expect(false);
     });
+
+    test('When configured to sync sessions, activity info should be stored in localStorage', () => {
+        renderHook(() => useIdleTracker(TestGracePeriod, { syncSessions: true }));
+
+        expect(localStorage.__STORE__['reactivity:session']).not.toBeNull();
+    });
+
+    test('When configured to sync sessions, activity should update the value in localStorage', () => {
+        actReact(() => {
+            jest.useFakeTimers();
+            renderHook(() => useIdleTracker(TestGracePeriod, { syncSessions: true }));
+        });
+
+        const previouslyLastActive = localStorage.__STORE__['reactivity:session'];
+
+        actReact(() => {
+            jest.advanceTimersByTime(10000);
+
+            userEvent.click(document.body);
+
+            jest.useRealTimers();
+        });
+
+        expect(localStorage.__STORE__['reactivity:session']).not.toBe(previouslyLastActive);
+    });
+
+    test('When configured to sync sessions, activity value should parse to a Date', () => {
+        renderHook(() => useIdleTracker(TestGracePeriod, { syncSessions: true }));
+
+        actReact(() => {
+            userEvent.click(document.body);
+        });
+
+        try {
+            new Date(localStorage.__STORE__['reactivity:session']);
+        } catch (e) {
+            expect(false);
+        }
+        expect(true);
+    });
 });
