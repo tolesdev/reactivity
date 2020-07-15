@@ -40,14 +40,15 @@ export function useIdleTracker(
     let { current: lastActive }: MutableRefObject<number> = useRef(Date.now());
     let { current: idleTimer }: MutableRefObject<NodeJS.Timeout | undefined> = useRef();
 
-    const createInterval = () => {
+    const createInterval = (syncLastActive?: string) => {
         idleTimer = setInterval(() => {
             let currentStatus = null;
 
             // Check for cross-tab compatibility
             if (syncSessions) {
                 // Grab our session information from our global storage
-                const syncSessionLastActive = localStorage.getItem('reactivity:session');
+                const syncSessionLastActive =
+                    localStorage.getItem('reactivity:session') ?? syncLastActive;
 
                 if (syncSessionLastActive) {
                     // If a session is being tracked, get the current status
@@ -83,11 +84,12 @@ export function useIdleTracker(
 
     /** ON MOUNT */
     useEffect(() => {
+        const syncLastActive = Date.now().toString();
         if (syncSessions) {
-            localStorage.setItem('reactivity:session', Date.now().toString());
+            localStorage.setItem('reactivity:session', syncLastActive);
         }
         // Create our initial interval to check session activity
-        createInterval();
+        createInterval(syncLastActive);
         // Clear intervals on un-mount
         return () => removeInterval();
     }, []);
